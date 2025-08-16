@@ -41,9 +41,12 @@ def main():
         # Update Player Position
         updatable.update(dt)
 
-        for sprite in asteroids:
-            if sprite.collides_with(player):
+        for asteroid in asteroids:
+            if asteroid.collides_with(player):
                 sys.exit("Game Over!")
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    asteroid.kill()
 
         # Rendering
         screen.fill("black")
