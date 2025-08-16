@@ -1,6 +1,8 @@
 # this allows us to use code from
 # the open-source pygame library
 # throughout this file
+import sys
+
 import pygame
 from constants import *
 from player import Player
@@ -36,8 +38,13 @@ def main():
         # Update Player Position
         updatable.update(dt)
 
+        for sprite in asteroids:
+            if sprite.collides_with(player):
+                sys.exit("Game Over!")
+
         # Rendering
         screen.fill("black")
+        # Update drawable group
         for sprite in drawable:
             sprite.draw(screen)
         pygame.display.flip()
